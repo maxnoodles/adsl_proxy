@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="080c096b-df3a-44c9-96ef-423a91de344b" name="aliyun" url="http://47.102.147.138">
+        <fileTransfer host="47.102.147.138" port="22" rootFolder="/root/Project/ADSLServer" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="6cccd486-1082-4cb8-b4d8-3f272031aec1" name="yunlifang" url="http://113.64.210.91">
+        <fileTransfer host="113.64.210.91" port="20111" rootFolder="/root/Project/ADSLClient" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="20111" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
