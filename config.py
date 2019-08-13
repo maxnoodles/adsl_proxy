@@ -3,7 +3,7 @@
 REDIS_HOST = '47.102.147.138'
 
 # Redis数据库密码, 如无则填None
-REDIS_PASSWORD = 'noodles'
+REDIS_PASSWORD = 'noodles8852.'
 
 # Redis数据库端口
 REDIS_PORT = 6379
@@ -21,7 +21,7 @@ SERVER_URL = 'http://47.102.147.138:8000'
 """客户端配置"""
 
 # 代理池键名
-PROXY_KEY = 'adsl'
+PROXY_KEY = 'adsl1'
 
 # 拨号网卡
 ADSL_IFNAME = 'ppp0'
@@ -30,7 +30,7 @@ ADSL_IFNAME = 'ppp0'
 ADSL_BASH = 'adsl-stop;adsl-start'
 
 # 拨号间隔
-ADSL_CYCLE = 100
+ADSL_CYCLE = 80
 
 # 通信秘钥
 TOKEN = 'noodles'

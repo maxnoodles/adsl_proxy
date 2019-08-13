@@ -58,14 +58,6 @@ class Sender:
         self.redis.remove(CLIENT_NAME)
         print('Successfully Removed Proxy')
 
-    def get_proxy(self):
-        """
-        获取代理
-        :return: proxy
-        """
-        self.redis = RedisClient()
-        return self.redis.get(CLIENT_NAME)
-
     def set_proxy(self, proxy):
         """
         设置代理
@@ -103,33 +95,31 @@ class Sender:
         """
         while True:
             print('ADSL Start, Remove Proxy, Please wait')
-            try:
-                if self.exists_proxy():
-                    self.remove_proxy()
-            except ConnectionError as e:
-                print('redis链接错误')
-            finally:
-                (status, output) = subprocess.getstatusoutput(ADSL_BASH)
-                if status == 0:
-                    print('ADSL Successfully')
-                    ip = self.get_ip()
-                    if ip:
-                        print('Now IP', ip)
-                        print('Testing Proxy, Please Wait')
-                        proxy = '{ip}:{port}'.format(ip=ip, port=PROXY_PORT)
-                        if self.test_proxy(proxy):
-                            print('Valid Proxy')
-                            self.set_proxy(proxy)
-                            print('Sleeping')
-                            time.sleep(ADSL_CYCLE)
-                        else:
-                            print('Invalid Proxy')
+            (status, output) = subprocess.getstatusoutput(ADSL_BASH)
+            if status == 0:
+                print('ADSL Successfully')
+                ip = self.get_ip()
+                if ip:
+                    print('Now IP', ip)
+                    print('Testing Proxy, Please Wait')
+                    proxy = '{ip}:{port}'.format(ip=ip, port=PROXY_PORT)
+                    if self.test_proxy(proxy):
+                        print('Valid Proxy')
+                        self.set_proxy(proxy)
+                        print('Sleeping')
+                        time.sleep(ADSL_CYCLE)
+                        try:
+                            self.remove_proxy()
+                        except ConnectionError :
+                            print('redis链接错误')
                     else:
-                        print('Get IP Failed, Re Dialing')
-                        time.sleep(ADSL_ERROR_CYCLE)
+                        print('Invalid Proxy')
                 else:
-                    print('ADSL Failed, Please Check')
+                    print('Get IP Failed, Re Dialing')
                     time.sleep(ADSL_ERROR_CYCLE)
+            else:
+                print('ADSL Failed, Please Check')
+                time.sleep(ADSL_ERROR_CYCLE)
 
 
 def run():
