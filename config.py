@@ -1,6 +1,6 @@
 """服务端配置"""
 # Redis数据库IP
-REDIS_HOST = '47.102.147.138'
+REDIS_HOST = xxxxxx
 
 # Redis数据库密码, 如无则填None
 REDIS_PASSWORD = 'noodles8852.'
@@ -15,7 +15,7 @@ TOKEN = 'noodles'
 API_PORT = 8000
 
 # 服务器地址
-SERVER_URL = 'http://47.102.147.138:8000'
+SERVER_URL = xxxxxxx
 
 
 """客户端配置"""
